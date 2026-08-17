@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Academic Risk Prediction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">🎓 EduRisk AI</div>
+            <h1>Smart Student Academic Risk Prediction</h1>
+            <p>Powered by Deep Learning</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Input Form -->
+        <div class="card form-card">
+            <h2>📋 Student Information</h2>
+            <p class="subtitle">Enter student details to predict academic risk</p>
+
+            <form id="predictionForm">
+
+                <!-- Student Name -->
+                <div class="form-group">
+                    <label for="student_name">👤 Student Name</label>
+                    <input type="text" id="student_name" 
+                           placeholder="Enter student name" required>
+                </div>
+
+                <div class="form-grid">
+
+                    <!-- Attendance -->
+                    <div class="form-group">
+                        <label for="attendance">📅 Attendance (%)</label>
+                        <input type="number" id="attendance" 
+                               min="0" max="100" step="0.1"
+                               placeholder="e.g., 75" required>
+                        <span class="hint">0% - 100%</span>
+                    </div>
+
+                    <!-- Assignment Score -->
+                    <div class="form-group">
+                        <label for="assignment_score">📝 Assignment Score (%)</label>
+                        <input type="number" id="assignment_score" 
+                               min="0" max="100" step="0.1"
+                               placeholder="e.g., 80" required>
+                        <span class="hint">0% - 100%</span>
+                    </div>
+
+                    <!-- Midterm Score -->
+                    <div class="form-group">
+                        <label for="midterm_score">📊 Midterm Score (%)</label>
+                        <input type="number" id="midterm_score" 
+                               min="0" max="100" step="0.1"
+                               placeholder="e.g., 65" required>
+                        <span class="hint">0% - 100%</span>
+                    </div>
+
+                    <!-- Study Hours -->
+                    <div class="form-group">
+                        <label for="study_hours">⏰ Daily Study Hours</label>
+                        <input type="number" id="study_hours" 
+                               min="0" max="24" step="0.5"
+                               placeholder="e.g., 4" required>
+                        <span class="hint">Hours per day</span>
+                    </div>
+
+                    <!-- Participation -->
+                    <div class="form-group">
+                        <label for="participation">🙋 Class Participation (0-10)</label>
+                        <input type="number" id="participation" 
+                               min="0" max="10" step="0.1"
+                               placeholder="e.g., 7" required>
+                        <span class="hint">0 (Never) - 10 (Always)</span>
+                    </div>
+
+                    <!-- Previous GPA -->
+                    <div class="form-group">
+                        <label for="previous_gpa">🏆 Previous GPA</label>
+                        <input type="number" id="previous_gpa" 
+                               min="0" max="4" step="0.01"
+                               placeholder="e.g., 3.2" required>
+                        <span class="hint">0.0 - 4.0</span>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn-predict" id="predictBtn">
+                    🔍 Predict Risk
+                </button>
+
+            </form>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Analyzing student data...</p>
+        </div>
+
+        <!-- Result Card -->
+        <div class="card result-card" id="resultCard" style="display:none;">
+
+            <h2>📊 Prediction Result</h2>
+
+            <div class="student-info" id="studentInfo"></div>
+
+            <!-- Risk Meter -->
+            <div class="risk-meter-section">
+                <h3>Risk Level</h3>
+                <div class="risk-badge" id="riskBadge"></div>
+                <div class="meter-container">
+                    <div class="meter-bar">
+                        <div class="meter-fill" id="meterFill"></div>
+                    </div>
+                    <div class="meter-labels">
+                        <span>Low</span>
+                        <span>Medium</span>
+                        <span>High</span>
+                    </div>
+                </div>
+                <div class="risk-percentage" id="riskPercentage"></div>
+            </div>
+
+            <!-- Risk Stats -->
+            <div class="stats-grid" id="statsGrid"></div>
+
+            <!-- Recommendations -->
+            <div class="recommendations" id="recommendations">
+                <h3>💡 Recommendations</h3>
+                <ul id="recList"></ul>
+            </div>
+
+            <!-- New Prediction Button -->
+            <button class="btn-new" onclick="resetForm()">
+                🔄 New Prediction
+            </button>
+
+        </div>
+
+        <!-- Sample Data Buttons -->
+        <div class="card sample-card">
+            <h3>🧪 Try Sample Data</h3>
+            <div class="sample-buttons">
+                <button class="btn-sample btn-low" 
+                        onclick="fillSample('low')">
+                    ✅ Good Student
+                </button>
+                <button class="btn-sample btn-medium" 
+                        onclick="fillSample('medium')">
+                    ⚠️ Average Student
+                </button>
+                <button class="btn-sample btn-high" 
+                        onclick="fillSample('high')">
+                    🚨 At-Risk Student
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>🎓 Smart Student Academic Risk Prediction | Deep Learning Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
